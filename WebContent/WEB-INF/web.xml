@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+	id="WebApp_ID" version="3.1">
+
+	<display-name>BasicSpringMVC</display-name>
+	
+	 <context-param>
+		<param-name>light:administration:base-url</param-name>
+		<param-value>/admins</param-value>
+	</context-param>
+
+	<context-param>
+		<param-name>light:administration:base-package</param-name>
+		<param-value>org.gdgjss.lightadmin.config</param-value>
+	</context-param>
+
+	<context-param>
+		<param-name>light:administration:security</param-name>
+		<param-value>true</param-value>
+	</context-param>
+
+    <context-param>
+        <param-name>light:administration:security-logout-url</param-name>
+        <param-value>/logout</param-value>
+    </context-param>
+
+
+    <context-param>
+        <param-name>light:administration:back-to-site-url</param-name>
+        <param-value>http://lightadmin.org</param-value>
+    </context-param>
+    
+    <!-- other  -->
+    
+    
+    <context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>
+			/WEB-INF/spring-dispatcher-servlet.xml
+		</param-value>
+	</context-param>
+	
+	<context-param>
+        <param-name>spring.profiles.active</param-name>
+        <param-value>test-env</param-value>
+    </context-param>
+    
+    <listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	 <listener>
+	
+         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+</listener>
+	<filter>
+		<filter-name>httpMethodFilter</filter-name>
+		<filter-class>org.springframework.web.filter.HiddenHttpMethodFilter</filter-class>
+	</filter>
+	
+
+	<filter-mapping>
+		<filter-name>httpMethodFilter</filter-name>
+		<servlet-name>Spring MVC Dispatcher Servlet</servlet-name>
+	</filter-mapping>
+	
+	<servlet>
+		<servlet-name>Spring MVC Dispatcher Servlet</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value></param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<!-- Map all *.spring requests to the DispatcherServlet for handling -->
+	<servlet-mapping>
+		<servlet-name>Spring MVC Dispatcher Servlet</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+   
+   
+<!-- 	<servlet> -->
+<!-- 		<servlet-name>spring-dispatcher</servlet-name> -->
+<!-- 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class> -->
+<!-- 	</servlet> -->
+<!-- 	<servlet-mapping> -->
+<!-- 		<servlet-name>spring-dispatcher</servlet-name> -->
+<!-- 		<url-pattern>/</url-pattern> -->
+<!-- 	</servlet-mapping> -->
+
+	<servlet-mapping>
+		<servlet-name>default</servlet-name>
+		<url-pattern>/static/*</url-pattern>
+	</servlet-mapping>
+
+	
+
+</web-app>
